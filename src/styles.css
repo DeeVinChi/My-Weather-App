@@ -1,0 +1,75 @@
+body {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(69, 86, 102) 0%,
+    rgb(34, 34, 34) 90%
+  );
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  font-weight: 300;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+i {
+  color: #fff;
+  font-size: 90px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+button {
+  color: #fff;
+  background: rgb(42, 52, 62);
+  border-radius: 4px;
+  border: 2px solid rgb(29, 41, 53);
+  margin-top: 5px;
+}
+
+.location {
+  font-weight: 500;
+  font-size: 35px;
+  margin-top: 0 auto;
+}
+
+.situation {
+  font-size: 12px;
+}
+
+.tomorrow,
+.day1,
+.day2,
+.day3,
+.day4,
+.day5 {
+  transition: all 200ms ease-in-out;
+}
+
+.tomorrow:hover,
+.day1:hover,
+.day2:hover,
+.day3:hover,
+.day4:hover,
+.day5:hover {
+  background: rgba(34, 34, 34, 0.247) 90%;
+  cursor: pointer;
+}
+.tomorrow-icon {
+  font-size: 40px;
+}
+
+.tomorrow-degree {
+  font-size: 15px;
+}
+.icon {
+  font-size: 28px;
+}
