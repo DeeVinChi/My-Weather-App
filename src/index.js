@@ -40,6 +40,7 @@ function getTemp(response) {
   let displaydate = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
   document.querySelector("div.location").innerHTML = response.data.name;
+  celsiusTemp = response.data.main.temp;
   celsius.innerHTML = Math.round(response.data.main.temp);
   cityDescription.innerHTML = response.data.weather[0].description;
   displayTime.innerHTML = formatTime(response.data.dt * 1000);
@@ -75,6 +76,27 @@ function getCurrent(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+
+function linkFarhrenheit(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#degree");
+  let farhTemp = (celsiusTemp * 9) / 5 + 32;
+  tempElement.innerHTML = Math.round(farhTemp);
+}
+
+function linkCelsius(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#degree");
+  tempElement.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusTemp = null;
+
+let farhrenheitLink = document.querySelector("#farhrenheit");
+farhrenheitLink.addEventListener("click", linkFarhrenheit);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", linkCelsius);
 
 let search = document.querySelector("#search-form");
 search.addEventListener("submit", button);

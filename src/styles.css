@@ -37,6 +37,7 @@ footer {
 .degrees {
   text-decoration: none;
   color: #fff;
+  cursor: default;
 }
 
 .location {
