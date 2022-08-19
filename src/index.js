@@ -1,44 +1,54 @@
-let now = new Date();
+function formatTime(timestamp) {
+  let now = new Date(timestamp);
 
-let time = now.getHours();
-if (time < 10) {
-  time = `0${time}`;
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = `0${time}`;
+  }
+  let min = now.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
+  return `${hour}:${min}`;
 }
-let min = now.getMinutes();
-if (min < 10) {
-  min = `0${min}`;
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let year = now.getFullYear();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
+  let day = days[now.getDay()];
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[now.getMonth()];
+  return `${day}, ${month} ${year}`;
 }
-
-let year = now.getFullYear();
-let days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
-let day = days[now.getDay()];
-let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sept",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-let month = months[now.getMonth()];
-
-let displayTime = document.querySelector("h1");
-let displaydate = document.querySelector("#date");
-displayTime.innerHTML = `${time}:${min}`;
-displaydate.innerHTML = `${day}, ${month} ${year}`;
-
 function getTemp(response) {
   let celsius = document.querySelector("#degree");
-  celsius.innerHTML = Math.round(response.data.main.temp);
   let cityDescription = document.querySelector("#details");
-  cityDescription.innerHTML = response.data.weather[0].description;
+  let displayTime = document.querySelector("h1");
+  let displaydate = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
   document.querySelector("div.location").innerHTML = response.data.name;
+  celsius.innerHTML = Math.round(response.data.main.temp);
+  cityDescription.innerHTML = response.data.weather[0].description;
+  displayTime.innerHTML = formatTime(response.data.dt * 1000);
+  displaydate.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function searchCity(city) {
@@ -72,4 +82,4 @@ search.addEventListener("submit", button);
 let newButton = document.querySelector("button");
 newButton.addEventListener("click", getCurrent);
 
-searchCity("abuja");
+searchCity("New York");
