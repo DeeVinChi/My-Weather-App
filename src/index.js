@@ -33,6 +33,7 @@ function formatDate(timestamp) {
   let month = months[now.getMonth()];
   return `${day}, ${month} ${year}`;
 }
+
 function getTemp(response) {
   let celsius = document.querySelector("#degree");
   let cityDescription = document.querySelector("#details");
@@ -50,6 +51,26 @@ function getTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getforecast(response.data.coord);
+}
+
+
+function displayForecast() {
+  let forcastElement = document.querySelector("#forecast");
+  forcastHTML = `<div class="row">`;
+
+  forcastHTML =
+    forcastHTML +
+    `<div class="col day p-3">
+      <div class="icon">🌞</div>
+      <span class="degree"> 27℃ </span>
+      <div class="day">Wednesday</div>
+    </div>`;
+
+  forcastHTML = forcastHTML + `</div>`;
+
+  forcastElement.innerHTML = forcastHTML;
 }
 
 function searchCity(city) {
