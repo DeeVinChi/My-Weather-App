@@ -51,25 +51,14 @@ footer {
 }
 
 .tomorrow,
-.day1,
-.day2,
-.day3,
-.day4,
-.day5 {
+.day {
   transition: all 200ms ease-in-out;
 }
 
 .tomorrow:hover,
-.day1:hover,
-.day2:hover,
-.day3:hover,
-.day4:hover,
-.day5:hover {
+.day:hover {
   background: rgba(34, 34, 34, 0.247) 90%;
   cursor: pointer;
-}
-.tomorrow-icon {
-  font-size: 40px;
 }
 
 .tomorrow-degree {

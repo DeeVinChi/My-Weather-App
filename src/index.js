@@ -54,23 +54,64 @@ function getTemp(response) {
 
   getforecast(response.data.coord);
 }
+function getforecast(coordinates) {
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiKey = "2c76d8a751b74e7c383770af76420b02";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
-
-function displayForecast() {
+function displayForecast(response) {
   let forcastElement = document.querySelector("#forecast");
+
   forcastHTML = `<div class="row">`;
+  let days = response.data.daily;
+  document.querySelector("#tomorrowDegree").innerHTML = `${Math.round(
+    days[0].temp.max
+  )}℃`;
+  document.querySelector("#minDegree").innerHTML = `${Math.round(
+    days[0].temp.min
+  )}℃`;
 
-  forcastHTML =
-    forcastHTML +
-    `<div class="col day p-3">
-      <div class="icon">🌞</div>
-      <span class="degree"> 27℃ </span>
-      <div class="day">Wednesday</div>
-    </div>`;
+  document.querySelector("#tomorrowIcon").innerHTML = `<img src=
+    "http://openweathermap.org/img/wn/${days[0].weather[0].icon}@2x.png"
+    alt="${days[0].weather[0].description}"
+    width="55"
+    />`;
 
+  days.forEach(function (getDays, index) {
+    if (index < 5) {
+      forcastHTML =
+        forcastHTML +
+        `<div class="col day p-3">
+      <div class="icon">
+      <img src=
+    "http://openweathermap.org/img/wn/${getDays.weather[0].icon}@2x.png"
+    alt="${getDays.weather[0].description}"
+    width="40"
+    />
+      </div>
+      <span class="degree-high"><strong>${Math.round(
+        getDays.temp.max
+      )}℃</strong> </span class="low">/<span>${Math.round(
+          getDays.temp.min
+        )}℃</span>
+      <div class="day">${forecastDay(getDays.dt)}</div>
+    </div>
+    `;
+    }
+  });
   forcastHTML = forcastHTML + `</div>`;
 
   forcastElement.innerHTML = forcastHTML;
+}
+
+function forecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];
 }
 
 function searchCity(city) {

@@ -34,9 +34,10 @@
             <div>
               <img src="" alt="" id="icon" />
             </div>
-            <span class="current-degree text-center pt-0 pb-0" id="degree"
-              ></span
-            >
+            <span
+              class="current-degree text-center pt-0 pb-0"
+              id="degree"
+            ></span>
             <span class="degree-sign">
               <a href="#" class="degrees" id="celsius">℃</a> |
               <a href="#" class="degrees" id="farhrenheit">℉</a>
@@ -81,9 +82,11 @@
               <div class="col-10">
                 <p>Tomorrow's weather</p>
               </div>
-              <div class="col-2">
-                <div class="tomorrow-icon">🌧</div>
-                <div class="tomorrow-degree">20℃</div>
+              <div class="col-2" id="tomorrow">
+                <div class="tomorrow-icon" id="tomorrowIcon"></div>
+                <span class="tomorrow-degree" id="tomorrowDegree"></span>/<span
+                  id="minDegree"
+                ></span>
               </div>
             </div>
           </div>
@@ -91,9 +94,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="other-days m-3 p-3 pt-5 text-center" id="forecast">
-            
-          </div>
+          <div class="other-days m-3 p-3 pt-5 text-center" id="forecast"></div>
         </div>
       </div>
     </div>
