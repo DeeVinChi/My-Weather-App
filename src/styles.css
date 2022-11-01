@@ -1,4 +1,4 @@
-body {
+.body {
   background: radial-gradient(
     circle at 10% 20%,
     rgb(69, 86, 102) 0%,
@@ -7,6 +7,8 @@ body {
   font-family: "Roboto", sans-serif;
   color: #fff;
   font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 h1 {
